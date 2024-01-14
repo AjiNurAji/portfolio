@@ -7,10 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {},
+      backgroundImage: {
+        "text-gradient": "linear-gradient(322deg, #000, #fff 36%)",
+      },
     },
     colors: {
-      transparent: 'transparent',
+      transparent: "transparent",
       black: "#000",
       dark: "#161616",
       white: "#fff",
@@ -21,7 +23,7 @@ module.exports = {
     zIndex: {
       navbar: 9999,
       navlink: 999,
-    }
+    },
   },
   plugins: [],
 };

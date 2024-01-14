@@ -3,13 +3,14 @@ import Link from "next/link";
 import Hamburger from "./Hamburger";
 import { useEffect, useRef, useState } from "react";
 import NavLink from "./NavLink";
-import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [navbar, setActive] = useState(false);
   const refBurger = useRef(null);
   const refNav = useRef(null);
-  const path = usePathname();
+  const refHome = useRef(null);
+  const refProjects = useRef(null);
+  const refContact = useRef(null);
 
   useEffect(() => {
     if (navbar) {
@@ -22,12 +23,16 @@ const Navbar = () => {
   }, [navbar]);
 
   useEffect(() => {
-    if (navbar) {
-      setActive(!navbar)
-    }
-    refNav.current.classList.remove("active");
-    refBurger.current.classList.remove("active");
-  }, [path]);
+    document.addEventListener("click", (e) => {
+      if (!refBurger.current.contains(e.target)) {
+        setTimeout(() => {
+          setActive(false);
+          refBurger.current.classList.remove("active");
+          refNav.current.classList.remove("active");
+        }, 500)
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -42,7 +47,12 @@ const Navbar = () => {
           <Hamburger refBurger={refBurger} handle={setActive} active={navbar} />
         </div>
       </header>
-      <NavLink refNav={refNav} />
+      <NavLink
+        refNav={refNav}
+        refContact={refContact}
+        refProjects={refProjects}
+        refHome={refHome}
+      />
     </>
   );
 };
