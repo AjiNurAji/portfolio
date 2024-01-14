@@ -23,6 +23,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setTimeout(() => {
+      setActive(!navbar);
       refNav.current.classList.remove("active");
       refBurger.current.classList.remove("active");
     }, 400);
