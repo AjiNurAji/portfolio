@@ -3,11 +3,13 @@ import Link from "next/link";
 import Hamburger from "./Hamburger";
 import { useEffect, useRef, useState } from "react";
 import NavLink from "./NavLink";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [navbar, setActive] = useState(false);
   const refBurger = useRef(null);
   const refNav = useRef(null);
+  const path = usePathname();
 
   useEffect(() => {
     if (navbar) {
@@ -18,6 +20,13 @@ const Navbar = () => {
       refBurger.current.classList.remove("active");
     }
   }, [navbar]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      refNav.current.classList.remove("active");
+      refBurger.current.classList.remove("active");
+    }, 400);
+  }, [path]);
 
   return (
     <>
