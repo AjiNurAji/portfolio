@@ -22,11 +22,11 @@ const Navbar = () => {
   }, [navbar]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setActive(!navbar);
-      refNav.current.classList.remove("active");
-      refBurger.current.classList.remove("active");
-    }, 400);
+    if (navbar) {
+      setActive(!navbar)
+    }
+    refNav.current.classList.remove("active");
+    refBurger.current.classList.remove("active");
   }, [path]);
 
   return (
